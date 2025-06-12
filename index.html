@@ -188,11 +188,11 @@
     <div id="geoToGrid" class="form-section">
       <div class="form-group">
         <label for="latitude">Latitude :</label>
-        <input type="number" step="any" id="latitude" placeholder="18.05">
+        <input type="number" step="any" id="latitude" placeholder="18-05-00.00">
       </div>
       <div class="form-group">
         <label for="longitude">Longitude :</label>
-        <input type="number" step="any" id="longitude" placeholder="120.10">
+        <input type="number" step="any" id="longitude" placeholder="120-10-00.00">
       </div>
       <button class="convert-btn">Convert to GRID</button>
       <div class="RESULT" id="geoToGridOutput">
@@ -209,11 +209,11 @@
     <div id="gridToGeo" class="form-section active">
       <div class="form-group">
         <label for="xCoord">Northing :</label>
-        <input type="number" step="any" id="xCoord" placeholder="2012000.00">
+        <input type="number" step="any" id="xCoord" placeholder="20000.00">
       </div>
       <div class="form-group">
         <label for="yCoord">Easting :</label>
-        <input type="number" step="any" id="yCoord" placeholder="456000.00">
+        <input type="number" step="any" id="yCoord" placeholder="20000.00">
       </div>
       <button class="convert-btn">Convert to GEO</button>
       <div class="RESULT" id="gridToGeoOutput">
@@ -276,7 +276,15 @@
       sublocationSelect.innerHTML = '<option value="" selected disabled>-- Select City / Municipality --</option>';
     }
 
-    function populateSublocations(location) {
+    function updatePlaceholdersForSelectedMunicipality(municipalityKey) {
+  const data = geoData[municipalityKey];
+  if (data) {
+    document.getElementById('xCoord').placeholder = data.nbllm.toFixed(2);
+    document.getElementById('yCoord').placeholder = data.ebllm.toFixed(2);
+  }
+}
+
+function populateSublocations(location) {
       resetMunicipality();
       if (sublocations[location]) {
         sublocations[location].forEach(sub => {
@@ -297,7 +305,11 @@
       populateSublocations(locationSelect.value);
     });
 
-    function blinkResults(containerId) {
+    sublocationSelect.addEventListener('change', () => {
+  updatePlaceholdersForSelectedMunicipality(sublocationSelect.value);
+});
+
+function blinkResults(containerId) {
       const container = document.getElementById(containerId);
       const elementsToBlink = container.querySelectorAll('.RESULT2');
       elementsToBlink.forEach(el => el.classList.add('blink'));
