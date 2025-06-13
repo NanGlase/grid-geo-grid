@@ -188,11 +188,11 @@
     <div id="geoToGrid" class="form-section">
       <div class="form-group">
         <label for="latitude">Latitude :</label>
-        <input type="number" step="any" id="latitude" placeholder="18-05-00.00">
+        <input type="number" step="any" id="latitude" placeholder="18-05-00.00 N">
       </div>
       <div class="form-group">
         <label for="longitude">Longitude :</label>
-        <input type="number" step="any" id="longitude" placeholder="120-10-00.00">
+        <input type="number" step="any" id="longitude" placeholder="120-10-00.00 E">
       </div>
       <button class="convert-btn">Convert to GRID</button>
       <div class="RESULT" id="geoToGridOutput">
@@ -242,12 +242,9 @@
         'pinili', 'san_nicolas', 'sarrat', 'solsona', 'vintar'
       ],
       cagayan: [
-        'abulug', 'alcala', 'allacapan', 'amulung', 'aparri',
-        'baggao', 'ballesteros', 'buguey', 'calayan', 'camalaniugan',
-        'claveria', 'enrile', 'gattaran', 'gonzaga', 'iguig',
-        'lal_lo', 'lasam', 'penablanca', 'piat', 'rizal',
-        'sanchez_mira', 'santa_ana', 'santa_praxedes', 'santa_teresita',
-        'santo_nino', 'solana', 'tuao', 'tuguegarao_city'
+        'abulug', 'ballesteros', 'calayan',
+        'claveria', 'pamplona',
+        'sanchez_mira', 'santa_praxedes'
       ] 
     };
 
@@ -270,7 +267,16 @@
       sarrat: 		{ deglat: 18.1569888888889, deglong: 120.608888888889, metlat: 30.743, metlong: 29.391, nbllm: 2008389.86, ebllm: 462190.76 } ,								
       solsona: 		{ deglat: 18.0954694444444, deglong: 120.770255555556, metlat: 30.743, metlong: 29.418, nbllm: 2001201.68, ebllm: 475749.70 } ,								
       vintar: 		{ deglat: 18.2313277777778, deglong: 120.648341666667, metlat: 30.743, metlong: 29.391, nbllm: 2016398.50, ebllm: 462812.44 } 								
-    };
+
+// CAGAYAN (newly added)
+	  abulug: 		 { deglat: 18.5141444444444, deglong: 120.685036111111, metlat: 30.743, metlong: 29.391, nbllm: 20001.00, ebllm: 20000.00 },
+      ballesteros: 	 { deglat: 18.5141444444444, deglong: 120.685036111111, metlat: 30.744, metlong: 29.334, nbllm: 20002.00, ebllm: 20000.00 },
+      calayan: 		 { deglat: 18.1971527777778, deglong: 120.591033333333, metlat: 30.743, metlong: 29.391, nbllm: 20003.00, ebllm: 20000.00 },
+      claveria: 	 { deglat: 18.6062611111111, deglong: 121.078597222222, metlat: 30.745, metlong: 29.316, nbllm: 20000.00, ebllm: 20000.00 },
+      pamplona:		 { deglat: 18.5605111111111, deglong: 120.569330555556, metlat: 30.744, metlong: 29.334, nbllm: 20005.00, ebllm: 20000.00 },
+      sanchez_mira:  { deglat: 18.1755055555556, deglong: 120.592761111111, metlat: 30.743, metlong: 29.391, nbllm: 20006.00, ebllm: 20000.00 },
+      santa_praxedes:{ deglat: 18.0954694444444, deglong: 120.770255555556, metlat: 30.743, metlong: 29.418, nbllm: 20007.00, ebllm: 20000.00 }
+};
 
     function resetMunicipality() {
       sublocationSelect.innerHTML = '<option value="" selected disabled>-- Select City / Municipality --</option>';
