@@ -236,9 +236,9 @@
 
     const sublocations = {
       ilocos: [
-        'adams', 'bacarra', 'badoc', 'bangui', 'banna', 'batac_city',
-        'burgos', 'carasi', 'currimao', 'dingras', 'dumalneg', 'laoag_city',
-        'marcos', 'nueva_era', 'pagudpud', 'paoay', 'pasuquin', 'piddig',
+        'bacarra', 'badoc', 'bangui', 'banna', 'batac_city',
+        'burgos', 'dingras', 'dumalneg', 'laoag_city',
+        'nueva_era', 'pagudpud', 'paoay', 'pasuquin', 'piddig',
         'pinili', 'san_nicolas', 'sarrat', 'solsona', 'vintar'
       ],
       cagayan: [
@@ -296,7 +296,10 @@ function populateSublocations(location) {
         sublocations[location].forEach(sub => {
           const option = document.createElement('option');
           option.value = sub;
-          option.textContent = sub.replace(/_/g, ' ').toUpperCase();
+let label = sub.replace(/_/g, ' ').toUpperCase();
+if (sub === 'banna') label = 'BANNA (ESPIRITU)';
+if (sub === 'bangui') label = 'BANGUI / DUMALNEG';
+option.textContent = label;
           sublocationSelect.appendChild(option);
         });
       }
