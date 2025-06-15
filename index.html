@@ -38,7 +38,6 @@
     h3 {
       text-align: center;
       margin-top: 5px;
-      animation: blink 0.25s;
     }
 
     .mode-select,
@@ -57,10 +56,24 @@
       font-size: 16px;
     }
 
-    .mode-select select,
-    .form-group input {
+    /* DROPDOWN (SELECT) */
+    .mode-select select {
       width: 65%;
       padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #e7e8e8;
+    }
+
+    /* INPUT BOX */
+    .form-group input {
+      width: 65%;
+      padding-left: 14px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-top: 10px;
       font-size: 16px;
       box-sizing: border-box;
       border: 1px solid #ccc;
@@ -111,44 +124,27 @@
 
     .RESULT h4 {
       margin: 0 0 10px 0;
-	  text-align: center;
+      text-align: center;
+      font-size: 17px;
     }
 
-	.result1 p {
-		display: flex;
-		justify-content: space-between;
-		margin: 8px 0;
-		font-size: 17px; /* Increase the label font size here */
-	}
+    .result1 p {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+      font-size: 17px; /* Increase the label font size here */
+    }
 
-	.RESULT2 {
-		font-weight: bold;
-		font-size: 17px;
-	}
-	
-	/* Optional: make the result heading bigger too */
-	.RESULT h4 {
-		margin: 0 0 10px 0;
-		text-align: center;
-		font-size: 17px;
-	}
+    .RESULT2 {
+      font-weight: bold;
+      font-size: 17px;
+    }
 
     /* Add a line to separate the "RESULT:" heading and the results */
     .RESULT hr {
       margin: 10px 0;
       border: 0;
       border-top: 1px solid #ccc;
-    }
-
-    /* Blinking animation */
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    .blink {
-      animation: blink 0.25s;
     }
   </style>
 </head>
@@ -187,20 +183,20 @@
     <!-- GEO to GRID Form -->
     <div id="geoToGrid" class="form-section">
       <div class="form-group">
-        <label for="latitude">Latitude :</label>
-        <input type="number" step="any" id="latitude" placeholder="18-05-00.00 N">
+        <label for="latitude">Latitude (N) :</label>
+        <input type="text" inputmode="decimal" pattern="[0-9.\-: ]*" id="latitude" placeholder="DD-MM-SS / DD.DDDD">
       </div>
       <div class="form-group">
-        <label for="longitude">Longitude :</label>
-        <input type="number" step="any" id="longitude" placeholder="120-10-00.00 E">
+        <label for="longitude">Longitude (E) :</label>
+        <input type="text" inputmode="decimal" pattern="[0-9.\-: ]*" id="longitude" placeholder="DD-MM-SS / DD.DDDD">
       </div>
       <button class="convert-btn">Convert to GRID</button>
       <div class="RESULT" id="geoToGridOutput">
-        <h4 class="blink">GRID COORDINATES</h4>
+        <h4>GRID COORDINATES</h4>
         <hr />
         <div class="result1">
-          <p><strong>Northing:</strong> <span class="RESULT2 blink">-- --</span></p>
-          <p><strong>Easting:</strong> <span class="RESULT2 blink">-- --</span></p>
+          <p><strong>Northing:</strong> <span class="RESULT2">-- --</span></p>
+          <p><strong>Easting:</strong> <span class="RESULT2">-- --</span></p>
         </div>
       </div>
     </div>
@@ -208,20 +204,20 @@
     <!-- GRID to GEO Form -->
     <div id="gridToGeo" class="form-section active">
       <div class="form-group">
-        <label for="xCoord">Northing :</label>
+        <label for="xCoord">Northing (m) :</label>
         <input type="number" step="any" id="xCoord" placeholder="20000.00">
       </div>
       <div class="form-group">
-        <label for="yCoord">Easting :</label>
+        <label for="yCoord">Easting (m) :</label>
         <input type="number" step="any" id="yCoord" placeholder="20000.00">
       </div>
       <button class="convert-btn">Convert to GEO</button>
       <div class="RESULT" id="gridToGeoOutput">
-        <h4 class="blink">GEOGRAPHICAL LOCATION</h4>
+        <h4>GEOGRAPHICAL LOCATION</h4>
         <hr />
         <div class="result1">
-          <p><strong>Latitude :</strong> <span class="RESULT2 blink">-- --</span></p>
-          <p><strong>Longitude :</strong> <span class="RESULT2 blink">-- --</span></p>
+          <p><strong>Latitude :</strong> <span class="RESULT2">-- --</span></p>
+          <p><strong>Longitude :</strong> <span class="RESULT2">-- --</span></p>
         </div>
       </div>
     </div>
@@ -236,110 +232,169 @@
 
     const sublocations = {
       ilocos: [
-        'bacarra', 'badoc', 'bangui', 'banna', 'batac_city',
-        'burgos', 'dingras', 'laoag_city',
+        'adams', 'bacarra', 'badoc', 'bangui', 'banna', 'batac_city',
+        'burgos', 'carasi', 'currimao', 'dingras', 'laoag_city', 'marcos',
         'nueva_era', 'pagudpud', 'paoay', 'pasuquin', 'piddig',
         'pinili', 'san_nicolas', 'sarrat', 'solsona', 'vintar'
       ],
       cagayan: [
-        'abulug', 'ballesteros', 'calayan',
-        'claveria', 'pamplona',
-        'sanchez_mira', 'santa_praxedes'
+		'abulug', 'alcala', 'allacapan', 'amulung', 'aparrí', 
+		'baggao', 'ballesteros', 'buguey', 'calayan', 'camalaniugan', 
+		'claveria', 'enrile', 'gattaran', 'gonzaga', 'iguig', 'lal-lo', 
+		'lasam', 'pamplona', 'peñablanca', 'piat', 'rizal', 'sanchez_mira', 
+		'santa_ana', 'santa_praxedes', 'santa_teresita', 'santo_nino', 
+		'solana', 'tuao', 'tuguegarao_city'
       ] 
     };
 
     const geoData = {
-      bacarra: 		{ deglat: 18.2526333333333, deglong: 120.609061111111, metlat: 30.743, metlong: 29.391, nbllm: 2018879.35, ebllm: 458622.62 } ,								
-      badoc: 		{ deglat: 17.9282861111111, deglong: 120.473855555556, metlat: 30.743, metlong: 29.418, nbllm: 20000, ebllm: 20000 } ,								
-      bangui: 		{ deglat: 18.5389555555556, deglong: 120.764427777778, metlat: 30.744, metlong: 29.334, nbllm: 2050439.32, ebllm: 475105.50 } ,								
-      banna: 		{ deglat: 17.9823666666667, deglong: 120.657255555556, metlat: 30.743, metlong: 29.418, nbllm: 1988957.61, ebllm: 463555.90 } ,								
-      batac_city: 	{ deglat: 18.0571583333333, deglong: 120.561677777778, metlat: 30.743, metlong: 29.418, nbllm: 1997077.57, ebllm: 453660.83 } ,								
-      burgos: 		{ deglat: 18.5141444444444, deglong: 120.685036111111, metlat: 30.744, metlong: 29.334, nbllm: 20000, ebllm: 20000 } ,								
-      dingras: 		{ deglat: 18.1054972222222, deglong: 120.685036111111, metlat: 30.743, metlong: 29.391, nbllm: 2002453.10, ebllm: 467844.12 } ,								
-      laoag_city: 	{ deglat: 18.1971527777778, deglong: 120.591033333333, metlat: 30.743, metlong: 29.391, nbllm: 20000, ebllm: 20000 } ,								
-      nueva_era: 	{ deglat: 17.9186611111111, deglong: 120.495622222222, metlat: 30.743, metlong: 29.418, nbllm: 1981974.48, ebllm: 464163.44 } ,								
-      pagudpud: 	{ deglat: 18.5605111111111, deglong: 120.569330555556, metlat: 30.744, metlong: 29.334, nbllm: 2052808.70, ebllm: 477409.34 } ,								
-      paoay: 		{ deglat: 18.0635833333333, deglong: 120.521350000000, metlat: 30.743, metlong: 29.418, nbllm: 1997717.90, ebllm: 449211.18 } ,								
-      pasuquin: 	{ deglat: 18.3346444444444, deglong: 120.617919444444, metlat: 30.744, metlong: 29.363, nbllm: 2027873.58, ebllm: 459536.26 } ,								
-      piddig: 		{ deglat: 18.1672388888889, deglong: 120.714119444444, metlat: 30.743, metlong: 29.391, nbllm: 2009265.25, ebllm: 469717.84 } ,								
-      pinili: 		{ deglat: 17.9545250000000, deglong: 120.976144444444, metlat: 30.743, metlong: 29.418, nbllm: 1985741.11, ebllm: 449746.24 } ,								
-      san_nicolas: 	{ deglat: 18.1755055555556, deglong: 120.592761111111, metlat: 30.743, metlong: 29.391, nbllm: 20000, ebllm: 20000 } ,								
-      sarrat: 		{ deglat: 18.1569888888889, deglong: 120.608888888889, metlat: 30.743, metlong: 29.391, nbllm: 2008389.86, ebllm: 462190.76 } ,								
-      solsona: 		{ deglat: 18.0954694444444, deglong: 120.770255555556, metlat: 30.743, metlong: 29.418, nbllm: 2001201.68, ebllm: 475749.70 } ,								
-      vintar: 		{ deglat: 18.2313277777778, deglong: 120.648341666667, metlat: 30.743, metlong: 29.391, nbllm: 2016398.50, ebllm: 462812.44 } ,								
 
-// CAGAYAN (newly added)
-	  abulug: 		 { deglat: 18.5141444444444, deglong: 120.685036111111, metlat: 30.743, metlong: 29.391, nbllm: 20001.00, ebllm: 20000.00 },
-      ballesteros: 	 { deglat: 18.5141444444444, deglong: 120.685036111111, metlat: 30.744, metlong: 29.334, nbllm: 20002.00, ebllm: 20000.00 },
-      calayan: 		 { deglat: 18.1971527777778, deglong: 120.591033333333, metlat: 30.743, metlong: 29.391, nbllm: 20003.00, ebllm: 20000.00 },
-      claveria: 	 { deglat: 18.6062611111111, deglong: 121.078597222222, metlat: 30.745, metlong: 29.316, nbllm: 20000.00, ebllm: 20000.00 },
-      pamplona:		 { deglat: 18.5605111111111, deglong: 120.569330555556, metlat: 30.744, metlong: 29.334, nbllm: 20005.00, ebllm: 20000.00 },
-      sanchez_mira:  { deglat: 18.1755055555556, deglong: 120.592761111111, metlat: 30.743, metlong: 29.391, nbllm: 20006.00, ebllm: 20000.00 },
-      santa_praxedes:{ deglat: 18.0954694444444, deglong: 120.770255555556, metlat: 30.743, metlong: 29.418, nbllm: 20007.00, ebllm: 20000.00 }
-};
+// ILOCOS NORTE
+      bacarra: 		{ deglat: 18.2526333333333, deglong: 120.609061111111, metlat: 30.743, metlong: 29.391, nbllm: 2018879.35, ebllm: 458622.62 },
+      badoc: 		{ deglat: 17.9282861111111, deglong: 120.473855555556, metlat: 30.743, metlong: 29.418, nbllm: 20000.00, ebllm: 20000.00 },
+      bangui: 		{ deglat: 18.5389555555556, deglong: 120.764427777778, metlat: 30.744, metlong: 29.334, nbllm: 2050439.32, ebllm: 475105.50 },
+      banna: 		{ deglat: 17.9823666666667, deglong: 120.657255555556, metlat: 30.743, metlong: 29.418, nbllm: 1988957.61, ebllm: 463555.90 },
+      batac_city: 	{ deglat: 18.0571583333333, deglong: 120.561677777778, metlat: 30.743, metlong: 29.418, nbllm: 1997077.57, ebllm: 453660.83 },
+      burgos: 		{ deglat: 18.5141444444444, deglong: 120.685036111111, metlat: 30.744, metlong: 29.334, nbllm: 20000.00, ebllm: 20000.00 },
+      dingras: 		{ deglat: 18.1054972222222, deglong: 120.685036111111, metlat: 30.743, metlong: 29.391, nbllm: 2002453.10, ebllm: 467844.12 },
+      laoag_city: 	{ deglat: 18.1971527777778, deglong: 120.591033333333, metlat: 30.743, metlong: 29.391, nbllm: 20000.00, ebllm: 20000.00 },
+      nueva_era: 	{ deglat: 17.9186611111111, deglong: 120.495622222222, metlat: 30.743, metlong: 29.418, nbllm: 1981974.48, ebllm: 464163.44 },
+      pagudpud: 	{ deglat: 18.5605111111111, deglong: 120.569330555556, metlat: 30.744, metlong: 29.334, nbllm: 2052808.70, ebllm: 477409.34 },
+      paoay: 		{ deglat: 18.0635833333333, deglong: 120.521350000000, metlat: 30.743, metlong: 29.418, nbllm: 1997717.90, ebllm: 449211.18 },
+      pasuquin: 	{ deglat: 18.3346444444444, deglong: 120.617919444444, metlat: 30.744, metlong: 29.363, nbllm: 2027873.58, ebllm: 459536.26 },
+      piddig: 		{ deglat: 18.1672388888889, deglong: 120.714119444444, metlat: 30.743, metlong: 29.391, nbllm: 2009265.25, ebllm: 469717.84 },
+      pinili: 		{ deglat: 17.9545250000000, deglong: 120.976144444444, metlat: 30.743, metlong: 29.418, nbllm: 1985741.11, ebllm: 449746.24 },
+      san_nicolas: 	{ deglat: 18.1755055555556, deglong: 120.592761111111, metlat: 30.743, metlong: 29.391, nbllm: 20000.00, ebllm: 20000.00 },
+      sarrat: 		{ deglat: 18.1569888888889, deglong: 120.608888888889, metlat: 30.743, metlong: 29.391, nbllm: 2008389.86, ebllm: 462190.76 },
+      solsona: 		{ deglat: 18.0954694444444, deglong: 120.770255555556, metlat: 30.743, metlong: 29.418, nbllm: 2001201.68, ebllm: 475749.70 },
+      vintar: 		{ deglat: 18.2313277777778, deglong: 120.648341666667, metlat: 30.743, metlong: 29.391, nbllm: 2016398.50, ebllm: 462812.44 },
+
+// CAGAYAN 
+      abulug: 			{ deglat: 18.4385833333333, deglong: 121.454805555556, metlat: 30.744, metlong: 29.345, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      ballesteros: 		{ deglat: 18.4113163888889, deglong: 121.512459722222, metlat: 30.744, metlong: 29.349, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      calayan: 			{ deglat: 19.2643963888889, deglong: 121.476562500000, metlat: 30.747, metlong: 29.201, nbllm: 2130769.904, ebllm: 550097.143 } ,								
+      claveria: 		{ deglat: 18.6062611111111, deglong: 121.078597222222, metlat: 30.745, metlong: 29.316, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      pamplona: 		{ deglat: 18.4660027777778, deglong: 121.338380555556, metlat: 30.744, metlong: 29.340, nbllm: 2042369.060, ebllm: 535739.780 } ,								
+      sanchez_mira: 	{ deglat: 18.6117472222222, deglong: 121.233628055556, metlat: 30.744, metlong: 29.315, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      santa_praxedes: 	{ deglat: 18.5649750000000, deglong: 120.988886111111, metlat: 30.744, metlong: 29.323, nbllm: 2053289.420, ebllm: 498826.830 } 
+
+    };
+
+    function parseCoordinate(input) {
+      const trimmed = input.trim();
+
+      // Try DMS format: dd-mm-ss.ss or dd-mm-ss
+      const dmsMatch = trimmed.match(/^(\d+)[\-:](\d+)[\-:](\d+(?:\.\d+)?)$/);
+      if (dmsMatch) {
+        const deg = parseFloat(dmsMatch[1]);
+        const min = parseFloat(dmsMatch[2]);
+        const sec = parseFloat(dmsMatch[3]);
+        if (!isNaN(deg) && !isNaN(min) && !isNaN(sec)) {
+          return deg + min / 60 + sec / 3600;
+        }
+        return null;
+      }
+
+      // Try decimal degrees fallback
+      const decimal = parseFloat(trimmed);
+      return isNaN(decimal) ? null : decimal;
+    }
 
     function resetMunicipality() {
       sublocationSelect.innerHTML = '<option value="" selected disabled>-- Select City / Municipality --</option>';
     }
 
-    function updatePlaceholdersForSelectedMunicipality(municipalityKey) {
+function updatePlaceholdersForSelectedMunicipality(municipalityKey) {
   const data = geoData[municipalityKey];
   if (data) {
-    document.getElementById('xCoord').placeholder = data.nbllm.toFixed(2);
-    document.getElementById('yCoord').placeholder = data.ebllm.toFixed(2);
+    // Use version WITHOUT directions for placeholders
+const dmsLat = toDMSWithoutDirection(data.deglat);
+const dmsLng = toDMSWithoutDirection(data.deglong);
+const decLat = data.deglat.toFixed(7);
+const decLng = data.deglong.toFixed(7);
+
+document.getElementById('latitude').placeholder = `${dmsLat} or ${decLat}`;
+document.getElementById('longitude').placeholder = `${dmsLng} or ${decLng}`;
+
+
+    document.getElementById('xCoord').placeholder = data.nbllm.toFixed(3);
+    document.getElementById('yCoord').placeholder = data.ebllm.toFixed(3);
   }
 }
 
-function populateSublocations(location) {
+
+    function populateSublocations(location) {
       resetMunicipality();
       if (sublocations[location]) {
         sublocations[location].forEach(sub => {
           const option = document.createElement('option');
           option.value = sub;
-let label = sub.replace(/_/g, ' ').toUpperCase();
-if (sub === 'banna') label = 'BANNA (ESPIRITU)';
-if (sub === 'bangui') label = 'BANGUI / DUMALNEG';
-option.textContent = label;
+          let label = sub.replace(/_/g, ' ').toUpperCase();
+          if (sub === 'banna') label = 'BANNA (ESPIRITU)';
+          if (sub === 'bangui') label = 'BANGUI / DUMALNEG';
+          option.textContent = label;
           sublocationSelect.appendChild(option);
         });
       }
     }
 
-    modeSelect.addEventListener('change', () => {
-      geoSection.classList.toggle('active', modeSelect.value === 'geoToGrid');
-      gridSection.classList.toggle('active', modeSelect.value === 'gridToGeo');
-    });
+modeSelect.addEventListener('change', () => {
+  // Toggle visibility of sections
+  geoSection.classList.toggle('active', modeSelect.value === 'geoToGrid');
+  gridSection.classList.toggle('active', modeSelect.value === 'gridToGeo');
 
+  // Reset the province selection
+  locationSelect.selectedIndex = 0; // Reset to default
+
+  // Reset municipality and input fields
+  resetMunicipality();
+  document.getElementById('latitude').value = '';
+  document.getElementById('longitude').value = '';
+  document.getElementById('xCoord').value = '';
+  document.getElementById('yCoord').value = '';
+
+  // Reset placeholders
+  document.getElementById('latitude').placeholder = 'DD-MM-SS / DD.DDDD';
+  document.getElementById('longitude').placeholder = 'DD-MM-SS / DD.DDDD';
+  document.getElementById('xCoord').placeholder = '20000.00';
+  document.getElementById('yCoord').placeholder = '20000.00';
+
+});
     locationSelect.addEventListener('change', () => {
       populateSublocations(locationSelect.value);
     });
 
     sublocationSelect.addEventListener('change', () => {
-  updatePlaceholdersForSelectedMunicipality(sublocationSelect.value);
-});
+      updatePlaceholdersForSelectedMunicipality(sublocationSelect.value);
+    });
 
-function blinkResults(containerId) {
-      const container = document.getElementById(containerId);
-      const elementsToBlink = container.querySelectorAll('.RESULT2');
-      elementsToBlink.forEach(el => el.classList.add('blink'));
-      setTimeout(() => elementsToBlink.forEach(el => el.classList.remove('blink')), 1000);
+    function toDMSWithHyphens(deg, isLat) {
+      const absolute = Math.abs(deg);
+      const degrees = Math.floor(absolute);
+      const minutesNotTruncated = (absolute - degrees) * 60;
+      const minutes = Math.floor(minutesNotTruncated);
+      const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(2);
+
+      const hemisphere = isLat
+        ? (deg >= 0 ? 'N' : 'S')
+        : (deg >= 0 ? 'E' : 'W');
+
+      return `${String(degrees).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(5, '0')} ${hemisphere}`;
     }
-
-function toDMSWithHyphens(deg, isLat) {
+	
+	//NEW HELPER
+	function toDMSWithoutDirection(deg) {
   const absolute = Math.abs(deg);
   const degrees = Math.floor(absolute);
   const minutesNotTruncated = (absolute - degrees) * 60;
   const minutes = Math.floor(minutesNotTruncated);
-  const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(2);
+  const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(3);
 
-  const hemisphere = isLat
-    ? (deg >= 0 ? 'N' : 'S')
-    : (deg >= 0 ? 'E' : 'W');
-
-  return `${String(degrees).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(5, '0')} ${hemisphere}`;
+  return `${String(degrees).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(5, '0')}`;
 }
 
-    // Compute GRID → GEO
+
+// GRID → GEO conversion logic
     const convertToGeoBtn = gridSection.querySelector('.convert-btn');
     convertToGeoBtn.addEventListener('click', () => {
       const northing = parseFloat(document.getElementById('xCoord').value);
@@ -347,7 +402,7 @@ function toDMSWithHyphens(deg, isLat) {
       const selectedMunicipality = sublocationSelect.value;
 
       if (!selectedMunicipality || isNaN(northing) || isNaN(easting)) {
-        alert("Please select a valid city/municipality and fill in all fields.");
+        alert("Select a valid city/municipality and enter valid coordinates.");
         return;
       }
 
@@ -361,20 +416,44 @@ function toDMSWithHyphens(deg, isLat) {
       const lng = data.deglong + ((easting - data.ebllm) / data.metlong) / 3600;
 
       const resultElements = document.querySelectorAll('#gridToGeoOutput .RESULT2');
-resultElements[0].textContent = toDMSWithHyphens(lat, true);
-resultElements[1].textContent = toDMSWithHyphens(lng, false);
+      resultElements[0].textContent = toDMSWithHyphens(lat, true);
+      resultElements[1].textContent = toDMSWithHyphens(lng, false);
 
-
-
-      blinkResults('gridToGeoOutput');
     });
 
-    // GEO → GRID stub
-    const convertToGridBtn = geoSection.querySelector('.convert-btn');
-    convertToGridBtn.addEventListener('click', () => {
-      // You can add conversion logic for GEO → GRID here
-      blinkResults('geoToGridOutput');
-    });
-  </script>
+// GEO → GRID conversion logic
+const convertToGridBtn = geoSection.querySelector('.convert-btn');
+convertToGridBtn.addEventListener('click', () => {
+  const latitude = parseCoordinate(document.getElementById('latitude').value);
+  const longitude = parseCoordinate(document.getElementById('longitude').value);
+  const selectedMunicipality = sublocationSelect.value;
+
+  if (!selectedMunicipality || latitude === null || longitude === null) {
+    alert("Select a valid city/municipality and enter valid Geographical Location.");
+    return;
+  }
+
+  const data = geoData[selectedMunicipality];
+  if (!data) {
+    alert("City/Municipality data not available.");
+    return;
+  }
+
+  const northing = data.nbllm + (latitude - data.deglat) * data.metlat * 3600;
+  const easting = data.ebllm + (longitude - data.deglong) * data.metlong * 3600;
+
+  const resultElements = document.querySelectorAll('#geoToGridOutput .RESULT2');
+  resultElements[0].textContent = northing.toFixed(2);
+  resultElements[1].textContent = easting.toFixed(2);
+
+
+});
+
+
+
+
+</script>
 </body>
 </html>
+
+
