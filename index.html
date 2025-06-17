@@ -1,1 +1,494 @@
-PCFET0NUWVBFIEhUTUwgVj0xLj0iX18vZG9jdHlwZT0iY3RtcC9odG1sIiBodG1sIGxhbmc9ImVuIj4KPGh0bWwgbGFuZz0iZW4iPgo8aGVhZD4KPHN0eWxlPgogIGJvZHkgewogICAgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOwogICAgYmFja2dyb3VuZDogI2Y0ZjRmNDsKICAgIHBhZGRpbmc6IDdweDsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBqdXN0aWZ5LWNvbW1lY3Q6IGNlbnRlcjsKICB9CgogIC5jb252ZXJ0ZXItY29udGFpbmVyIHsKICAgIGJhY2tncm91bmQ6IHdoaXRlOwogICAgcGFkZGluZzogMjBweCAzMHB4OwogICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMAswLDAuNyk7CiAgICB3aWR0aDogMTAwJTsKICAgIG1heC13aWR0aDogNDAwcHgsCiAgfQoKICBoMiB7CiAgICB0ZXh0LXNsaWduOiBjZW50ZXI7CiAgICBtYXJnaW4tYm90dG9tOiA1cHggZm9udC1zaXplOjI0cHg7CiAgICBmb250LXNpemU6MTcgcHg7CiAgICBtYXJnaW4tdG9wOjMgcHg7CiAgICBtYXJnaW4tYm90dG9tOiA1cHgsCiAgICBsaW5lOjMgcHg7CiAgfQoKICBodCUyMiB7CiAgICB0ZXh0LXNsaWduOiBjZW50ZXI7CiAgICBtYXJnaW4tYm90dG9tOiA1cHggZm9udC1zaXplOjI3cHg7CiAgICBmb250LXNpemU6MTcgZm9udC1zaXplOjE3cHg7CiAgICBtYXJnaW4tdG9wOjMgcHg7CiAgICBtYXJnaW4tYm90dG9tOiA1cHgsCiAgICBsaW5lOjMgcHg7CiAgfQoKICBodC8gaWZ0aXBlZ2ludG9zZCBwYWdlPgo8L2hlYWQ+CjxzdHJ5PgogIGJvZHkgewogICAgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOwogICAgYmFjay1ncm91bmQ6ICNmNGY0ZjQ7CiAgICBqYXN0aWZ5LWNvbW1lY3Q6IGNlbnRlcjsKICAgIHByb2plY3Q6IHdoaXRlOwogICAgYmFza2dyb3VuZC1jb2xvcjogI2ZmYzgwOwogIH0gYXMNCg== 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Grid⇄Geo Conversion</title>
+<link rel="icon" href="NAN_logo.ico" type="image/x-icon"> <!-- This is my favicon -->	
+	
+<meta property="og:title" content="Grid⇄Geo Conversion" />
+<meta property="og:description" content="A free online Grid⇄Geo Conversion built with HTML and JavaScript." />
+<meta property="og:image" content="https://nanglase.github.io/grid-geo-grid/grid-geo.JPG" />
+<meta property="og:url" content="https://nanglase.github.io/grid-geo-grid/" />
+<meta property="og:type" content="website" />
+	
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 7px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .converter-container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,.5);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 5px;
+	  font-size:24px;
+    }
+
+    h3 {
+        text-align: center;
+		font-weight: normal;
+		font-size:17px;
+        margin-top: 3px;
+        margin-bottom: 25px;
+    }
+
+    .mode-select,
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .mode-select label,
+    .form-group label {
+      flex: 0 0 120px;
+      font-weight: normal;
+      margin-bottom: 0;
+      font-size: 16px;
+    }
+
+    /* DROPDOWN (SELECT) */
+    .mode-select select {
+      width: 65%;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #e7e8e8;
+    }
+
+    /* INPUT BOX */
+    .form-group input {
+      width: 65%;
+      padding-left: 14px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #e7e8e8;
+    }
+
+    .form-section {
+      display: none;
+    }
+
+    .form-section.active {
+      display: block;
+    }
+
+    .convert-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 17px;
+      background-color: #ffa14f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .convert-btn:hover {
+      background-color: #ff820c;
+    }
+
+    .output-box {
+      background: #eee;
+      padding: 20px;
+      font-size: 20px;
+      margin-top: 15px;
+      border-radius: 5px;
+    }
+
+    /* New styles for the result section */
+    .RESULT {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+    }
+
+    .RESULT h4 {
+      margin: 0 0 10px 0;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    .result1 p {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+      font-size: 17px; /* Increase the label font size here */
+    }
+
+    .RESULT2 {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    /* Add a line to separate the "RESULT:" heading and the results */
+    .RESULT hr {
+      margin: 10px 0;
+      border: 0;
+      border-top: 1px solid #ccc;
+    }    
+	
+	/* Blink animation */
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0.1; }
+        100% { opacity: 1; }
+    }
+    .blink {
+    animation: blink 0.25s;
+    }
+	
+  </style>
+</head>
+<body>
+  <div class="converter-container">
+    <h2>NAN Surveying Tools</h2>
+    <h3>Grid⇄Geo Conversion</h3>
+
+    <!-- Mode Selection Dropdown -->
+    <div class="mode-select">
+      <label for="mode">Conversion Mode :</label>
+      <select id="mode" title="Choose the type of conversion you want to perform">
+        <option value="gridToGeo" selected>GRID → GEO</option>
+        <option value="geoToGrid">GEO → GRID</option>
+      </select>
+    </div>
+
+    <!-- Province Dropdown -->
+    <div class="mode-select">
+      <label for="location">Province :</label>
+      <select id="location">
+        <option value="" selected disabled>-- Select Province --</option>
+        <option value="ilocos">ILOCOS NORTE</option>
+        <option value="cagayan">CAGAYAN</option>
+      </select>
+    </div>
+
+    <!-- Municipality Dropdown -->
+    <div class="mode-select">
+      <label for="sublocation">City / Municipality :</label>
+      <select id="sublocation">
+        <option value="" selected disabled>-- Select City / Municipality --</option>
+      </select>
+    </div>
+
+    <!-- GEO to GRID Form -->
+    <div id="geoToGrid" class="form-section">
+      <div class="form-group">
+        <label for="latitude">Latitude (N) :</label>
+        <input type="text" inputmode="decimal" pattern="[0-9.\-: ]*" id="latitude" placeholder="DD-MM-SS / DD.DDDD">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude (E) :</label>
+        <input type="text" inputmode="decimal" pattern="[0-9.\-: ]*" id="longitude" placeholder="DD-MM-SS / DD.DDDD">
+      </div>
+      <button class="convert-btn">Convert to GRID</button>
+      <div class="RESULT" id="geoToGridOutput">
+        <h4>GRID COORDINATES</h4>
+        <hr />
+        <div class="result1">
+          <p><strong>Northing:</strong> <span class="RESULT2">-- --</span></p>
+          <p><strong>Easting:</strong> <span class="RESULT2">-- --</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID to GEO Form -->
+    <div id="gridToGeo" class="form-section active">
+      <div class="form-group">
+        <label for="xCoord">Northing (m) :</label>
+        <input type="number" step="any" id="xCoord" placeholder="20000.00">
+      </div>
+      <div class="form-group">
+        <label for="yCoord">Easting (m) :</label>
+        <input type="number" step="any" id="yCoord" placeholder="20000.00">
+      </div>
+      <button class="convert-btn">Convert to GEO</button>
+      <div class="RESULT" id="gridToGeoOutput">
+        <h4>GEOGRAPHICAL LOCATION</h4>
+        <hr />
+        <div class="result1">
+          <p><strong>Latitude :</strong> <span class="RESULT2">-- --</span></p>
+          <p><strong>Longitude :</strong> <span class="RESULT2">-- --</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modeSelect = document.getElementById('mode');
+    const geoSection = document.getElementById('geoToGrid');
+    const gridSection = document.getElementById('gridToGeo');
+    const locationSelect = document.getElementById('location');
+    const sublocationSelect = document.getElementById('sublocation');
+
+    const sublocations = {
+      ilocos: [
+        'adams', 'bacarra', 'badoc', 'bangui', 'banna', 'batac_city',
+        'burgos', 'carasi', 'currimao', 'dingras', 'laoag_city', 'marcos',
+        'nueva_era', 'pagudpud', 'paoay', 'pasuquin', 'piddig',
+        'pinili', 'san_nicolas', 'sarrat', 'solsona', 'vintar'
+      ],
+      cagayan: [
+		'abulug', 'alcala', 'allacapan', 'amulung', 'aparri', 
+		'baggao', 'ballesteros', 'buguey', 'calayan', 'camalaniugan', 
+		'claveria', 'enrile', 'gattaran', 'gonzaga', 'iguig', 'lal-lo', 
+		'lasam', 'pamplona', 'peñablanca', 'piat', 'rizal', 'sanchez_mira', 
+		'santa_ana', 'santa_praxedes', 'santa_teresita', 'santo_nino', 
+		'solana', 'tuao', 'tuguegarao_city'
+      ] 
+    };
+
+    const geoData = {
+
+// ILOCOS NORTE
+      bacarra: 		{ deglat: 18.2526333333333, deglong: 120.609061111111, metlat: 30.743, metlong: 29.391, nbllm: 2018879.35, ebllm: 458622.62 },
+      badoc: 		{ deglat: 17.9282861111111, deglong: 120.473855555556, metlat: 30.743, metlong: 29.418, nbllm: 20000.00, ebllm: 20000.00 },
+      bangui: 		{ deglat: 18.5389555555556, deglong: 120.764427777778, metlat: 30.744, metlong: 29.334, nbllm: 2050439.32, ebllm: 475105.50 },
+      banna: 		{ deglat: 17.9823666666667, deglong: 120.657255555556, metlat: 30.743, metlong: 29.418, nbllm: 1988957.61, ebllm: 463555.90 },
+      batac_city: 	{ deglat: 18.0571583333333, deglong: 120.561677777778, metlat: 30.743, metlong: 29.418, nbllm: 1997077.57, ebllm: 453660.83 },
+      burgos: 		{ deglat: 18.5141444444444, deglong: 120.685036111111, metlat: 30.744, metlong: 29.334, nbllm: 20000.00, ebllm: 20000.00 },
+      dingras: 		{ deglat: 18.1054972222222, deglong: 120.685036111111, metlat: 30.743, metlong: 29.391, nbllm: 2002453.10, ebllm: 467844.12 },
+      laoag_city: 	{ deglat: 18.1971527777778, deglong: 120.591033333333, metlat: 30.743, metlong: 29.391, nbllm: 20000.00, ebllm: 20000.00 },
+      nueva_era: 	{ deglat: 17.9186611111111, deglong: 120.495622222222, metlat: 30.743, metlong: 29.418, nbllm: 1981974.48, ebllm: 464163.44 },
+      pagudpud: 	{ deglat: 18.5605111111111, deglong: 120.569330555556, metlat: 30.744, metlong: 29.334, nbllm: 2052808.70, ebllm: 477409.34 },
+      paoay: 		{ deglat: 18.0635833333333, deglong: 120.521350000000, metlat: 30.743, metlong: 29.418, nbllm: 1997717.90, ebllm: 449211.18 },
+      pasuquin: 	{ deglat: 18.3346444444444, deglong: 120.617919444444, metlat: 30.744, metlong: 29.363, nbllm: 2027873.58, ebllm: 459536.26 },
+      piddig: 		{ deglat: 18.1672388888889, deglong: 120.714119444444, metlat: 30.743, metlong: 29.391, nbllm: 2009265.25, ebllm: 469717.84 },
+      pinili: 		{ deglat: 17.9545250000000, deglong: 120.976144444444, metlat: 30.743, metlong: 29.418, nbllm: 1985741.11, ebllm: 449746.24 },
+      san_nicolas: 	{ deglat: 18.1755055555556, deglong: 120.592761111111, metlat: 30.743, metlong: 29.391, nbllm: 20000.00, ebllm: 20000.00 },
+      sarrat: 		{ deglat: 18.1569888888889, deglong: 120.608888888889, metlat: 30.743, metlong: 29.391, nbllm: 2008389.86, ebllm: 462190.76 },
+      solsona: 		{ deglat: 18.0954694444444, deglong: 120.770255555556, metlat: 30.743, metlong: 29.418, nbllm: 2001201.68, ebllm: 475749.70 },
+      vintar: 		{ deglat: 18.2313277777778, deglong: 120.648341666667, metlat: 30.743, metlong: 29.391, nbllm: 2016398.50, ebllm: 462812.44 },
+
+// CAGAYAN 
+      abulug: 			{ deglat: 18.4385833333333, deglong: 121.454805555556, metlat: 30.744, metlong: 29.345, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      ballesteros: 		{ deglat: 18.4113163888889, deglong: 121.512459722222, metlat: 30.744, metlong: 29.349, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      calayan: 			{ deglat: 19.2643963888889, deglong: 121.476562500000, metlat: 30.747, metlong: 29.201, nbllm: 2130769.904, ebllm: 550097.143 } ,								
+      claveria: 		{ deglat: 18.6062611111111, deglong: 121.078597222222, metlat: 30.745, metlong: 29.316, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      pamplona: 		{ deglat: 18.4660027777778, deglong: 121.338380555556, metlat: 30.744, metlong: 29.340, nbllm: 2042369.060, ebllm: 535739.780 } ,								
+      sanchez_mira: 	{ deglat: 18.6117472222222, deglong: 121.233628055556, metlat: 30.744, metlong: 29.315, nbllm: 20000.00, ebllm: 20000.00 } ,								
+      santa_praxedes: 	{ deglat: 18.5649750000000, deglong: 120.988886111111, metlat: 30.744, metlong: 29.323, nbllm: 2053289.420, ebllm: 498826.830 } 
+
+    };
+
+    function parseCoordinate(input) {
+      const trimmed = input.trim();
+
+      // Try DMS format: dd-mm-ss.ss or dd-mm-ss
+      const dmsMatch = trimmed.match(/^(\d+)[\-:](\d+)[\-:](\d+(?:\.\d+)?)$/);
+      if (dmsMatch) {
+        const deg = parseFloat(dmsMatch[1]);
+        const min = parseFloat(dmsMatch[2]);
+        const sec = parseFloat(dmsMatch[3]);
+        if (!isNaN(deg) && !isNaN(min) && !isNaN(sec)) {
+          return deg + min / 60 + sec / 3600;
+        }
+        return null;
+      }
+
+      // Try decimal degrees fallback
+      const decimal = parseFloat(trimmed);
+      return isNaN(decimal) ? null : decimal;
+    }
+
+    function resetMunicipality() {
+      sublocationSelect.innerHTML = '<option value="" selected disabled>-- Select City / Municipality --</option>';
+    }
+
+function updatePlaceholdersForSelectedMunicipality(municipalityKey) {
+  const data = geoData[municipalityKey];
+  const latInput = document.getElementById('latitude');
+  const lngInput = document.getElementById('longitude');
+  const xInput = document.getElementById('xCoord');
+  const yInput = document.getElementById('yCoord');
+
+  if (data) {
+    // Use version WITHOUT directions for placeholders
+    const dmsLat = toDMSWithoutDirection(data.deglat);
+    const dmsLng = toDMSWithoutDirection(data.deglong);
+    const decLat = data.deglat.toFixed(7);
+    const decLng = data.deglong.toFixed(7);
+
+    latInput.placeholder = ${dmsLat} or ${decLat};
+    lngInput.placeholder = ${dmsLng} or ${decLng};
+    xInput.placeholder = data.nbllm.toFixed(3);
+    yInput.placeholder = data.ebllm.toFixed(3);
+  } else {
+    // Placeholder text for cities not yet in geoData
+    latInput.placeholder = lngInput.placeholder = "Still working and updating...";
+    xInput.placeholder = yInput.placeholder = "Still working and updating...";
+  }
+}
+
+
+    function populateSublocations(location) {
+      resetMunicipality();
+      if (sublocations[location]) {
+        sublocations[location].forEach(sub => {
+          const option = document.createElement('option');
+          option.value = sub;
+          let label = sub.replace(/_/g, ' ').toUpperCase();
+          if (sub === 'banna') label = 'BANNA (ESPIRITU)';
+          if (sub === 'bangui') label = 'BANGUI / DUMALNEG';
+          option.textContent = label;
+          sublocationSelect.appendChild(option);
+        });
+      }
+    }
+
+modeSelect.addEventListener('change', () => {
+  // Toggle visibility of sections
+  geoSection.classList.toggle('active', modeSelect.value === 'geoToGrid');
+  gridSection.classList.toggle('active', modeSelect.value === 'gridToGeo');
+
+  // Reset the province selection
+  locationSelect.selectedIndex = 0; // Reset to default
+
+  // Reset municipality and input fields
+  resetMunicipality();
+  document.getElementById('latitude').value = '';
+  document.getElementById('longitude').value = '';
+  document.getElementById('xCoord').value = '';
+  document.getElementById('yCoord').value = '';
+
+  // Reset placeholders
+  document.getElementById('latitude').placeholder = 'DD-MM-SS / DD.DDDD';
+  document.getElementById('longitude').placeholder = 'DD-MM-SS / DD.DDDD';
+  document.getElementById('xCoord').placeholder = '20000.00';
+  document.getElementById('yCoord').placeholder = '20000.00';
+
+});
+    locationSelect.addEventListener('change', () => {
+      populateSublocations(locationSelect.value);
+    });
+
+    sublocationSelect.addEventListener('change', () => {
+      updatePlaceholdersForSelectedMunicipality(sublocationSelect.value);
+    });
+
+    function toDMSWithHyphens(deg, isLat) {
+      const absolute = Math.abs(deg);
+      const degrees = Math.floor(absolute);
+      const minutesNotTruncated = (absolute - degrees) * 60;
+      const minutes = Math.floor(minutesNotTruncated);
+      const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(2);
+
+      const hemisphere = isLat
+        ? (deg >= 0 ? 'N' : 'S')
+        : (deg >= 0 ? 'E' : 'W');
+
+      return ${String(degrees).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(5, '0')} ${hemisphere};
+    }
+	
+	//NEW HELPER
+	function toDMSWithoutDirection(deg) {
+  const absolute = Math.abs(deg);
+  const degrees = Math.floor(absolute);
+  const minutesNotTruncated = (absolute - degrees) * 60;
+  const minutes = Math.floor(minutesNotTruncated);
+  const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(3);
+
+  return ${String(degrees).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(5, '0')};
+}
+
+
+// GRID → GEO conversion logic
+    const convertToGeoBtn = gridSection.querySelector('.convert-btn');
+convertToGeoBtn.addEventListener('click', () => {
+  const northing = parseFloat(document.getElementById('xCoord').value);
+  const easting = parseFloat(document.getElementById('yCoord').value);
+  const selectedMunicipality = sublocationSelect.value;
+
+  if (!selectedMunicipality || isNaN(northing) || isNaN(easting)) {
+    alert("Select a valid city/municipality and enter valid coordinates.");
+    return;
+  }
+
+  const data = geoData[selectedMunicipality];
+  if (!data) {
+    alert("City/Municipality data not available.");
+    return;
+  }
+
+  const lat = data.deglat + ((northing - data.nbllm) / data.metlat) / 3600;
+  const lng = data.deglong + ((easting - data.ebllm) / data.metlong) / 3600;
+
+  const resultElements = document.querySelectorAll('#gridToGeoOutput .RESULT2');
+  resultElements[0].textContent = toDMSWithHyphens(lat, true);
+  resultElements[1].textContent = toDMSWithHyphens(lng, false);
+
+  // Add blinking effect to both labels and values
+  const resultLabels = document.querySelectorAll('#gridToGeoOutput .result1 p');
+  resultLabels.forEach(p => {
+    p.classList.add('blink');
+    // Remove blink class after animation completes
+    setTimeout(() => p.classList.remove('blink'), 500);
+  });
+});
+
+
+// GEO → GRID conversion logic
+const convertToGridBtn = geoSection.querySelector('.convert-btn');
+convertToGridBtn.addEventListener('click', () => {
+  const latitude = parseCoordinate(document.getElementById('latitude').value);
+  const longitude = parseCoordinate(document.getElementById('longitude').value);
+  const selectedMunicipality = sublocationSelect.value;
+
+  if (!selectedMunicipality || latitude === null || longitude === null) {
+    alert("Select a valid city/municipality and enter valid Geographical Location.");
+    return;
+  }
+
+  const data = geoData[selectedMunicipality];
+  if (!data) {
+    alert("City/Municipality data not available.");
+    return;
+  }
+
+  const northing = data.nbllm + (latitude - data.deglat) * data.metlat * 3600;
+  const easting = data.ebllm + (longitude - data.deglong) * data.metlong * 3600;
+
+  const resultElements = document.querySelectorAll('#geoToGridOutput .RESULT2');
+  resultElements[0].textContent = northing.toFixed(2);
+  resultElements[1].textContent = easting.toFixed(2);
+
+  // Add blinking effect to both labels and values
+  const resultLabels = document.querySelectorAll('#geoToGridOutput .result1 p');
+  resultLabels.forEach(p => {
+    p.classList.add('blink');
+    setTimeout(() => p.classList.remove('blink'), 500);
+  });
+});
+
+
+
+
+
+</script>
+</body>
+</html>
+
