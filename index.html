@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Grid⇄Geo Conversion</title>
-<link rel="icon" href="NAN_logo.png" type="image/x-icon"> <!-- This is my favicon -->	
+<link rel="icon" href="NAN_logo.png" type="image/x-icon">
 	
 <meta property="og:title" content="Grid⇄Geo Conversion" />
 <meta property="og:description" content="A free online Grid⇄Geo Conversion built with HTML and JavaScript." />
@@ -168,7 +168,7 @@
     <h2>NAN Surveying Tool</h2>
     <h3>Grid⇄Geo Conversion</h3>
 
-    <!-- Mode Selection Dropdown -->
+
     <div class="mode-select">
       <label for="mode">Conversion Mode :</label>
       <select id="mode" title="Choose the type of conversion you want to perform">
@@ -177,7 +177,7 @@
       </select>
     </div>
 
-    <!-- Province Dropdown -->
+
     <div class="mode-select">
       <label for="location">Province :</label>
       <select id="location">
@@ -187,7 +187,7 @@
       </select>
     </div>
 
-    <!-- Municipality Dropdown -->
+
     <div class="mode-select">
       <label for="sublocation">City / Municipality :</label>
       <select id="sublocation">
@@ -195,7 +195,7 @@
       </select>
     </div>
 
-    <!-- GEO to GRID Form -->
+
     <div id="geoToGrid" class="form-section">
       <div class="form-group">
         <label for="latitude">Latitude (N) :</label>
@@ -216,7 +216,7 @@
       </div>
     </div>
 
-    <!-- GRID to GEO Form -->
+
     <div id="gridToGeo" class="form-section active">
       <div class="form-group">
         <label for="xCoord">Northing (m) :</label>
@@ -243,7 +243,7 @@ const _0xb4f3ac=_0xee10;(function(_0x2d34af,_0x48745a){const _0x1cfccf=_0xee10,_
 
     const geoData = {
 
-// ILOCOS NORTE
+
       bacarra: 		{ deglat: 18.2526333333333, deglong: 120.609061111111, metlat: 30.743, metlong: 29.391, nbllm: 2018879.35, ebllm: 458622.62 },
       badoc: 		{ deglat: 17.9282861111111, deglong: 120.473855555556, metlat: 30.743, metlong: 29.418, nbllm: 20000.00, ebllm: 20000.00 },
       bangui: 		{ deglat: 18.5389555555556, deglong: 120.764427777778, metlat: 30.744, metlong: 29.334, nbllm: 2050439.32, ebllm: 475105.50 },
@@ -263,7 +263,7 @@ const _0xb4f3ac=_0xee10;(function(_0x2d34af,_0x48745a){const _0x1cfccf=_0xee10,_
       solsona: 		{ deglat: 18.0954694444444, deglong: 120.770255555556, metlat: 30.743, metlong: 29.418, nbllm: 2001201.68, ebllm: 475749.70 },
       vintar: 		{ deglat: 18.2313277777778, deglong: 120.648341666667, metlat: 30.743, metlong: 29.391, nbllm: 2016398.50, ebllm: 462812.44 },
 
-// CAGAYAN 
+
       abulug: 			{ deglat: 18.4385833333333, deglong: 121.454805555556, metlat: 30.744, metlong: 29.345, nbllm: 20000.00, ebllm: 20000.00 } ,								
       ballesteros: 		{ deglat: 18.4113163888889, deglong: 121.512459722222, metlat: 30.744, metlong: 29.349, nbllm: 20000.00, ebllm: 20000.00 } ,								
       calayan: 			{ deglat: 19.2643963888889, deglong: 121.476562500000, metlat: 30.747, metlong: 29.201, nbllm: 2130769.904, ebllm: 550097.143 } ,								
@@ -277,10 +277,10 @@ const _0xb4f3ac=_0xee10;(function(_0x2d34af,_0x48745a){const _0x1cfccf=_0xee10,_
     function parseCoordinate(input) {
       const trimmed = input.trim();
 
-      // Try DMS format: dd-mm-ss.ss or dd-mm-ss
+  
 function _0x4c8d(){const _0x4af33b=['80pwfOcN','396574vkDDSb','1RRIueH','1435720cKKwTs','814303kCyKCe','1089595RAmgwA','1986AnhfOT','470PhyTpn','match','44754oxfoBF','996fGatEp','84MxLgwg','24meVczs','16452aXdYDM'];_0x4c8d=function(){return _0x4af33b;};return _0x4c8d();}const _0xf17c1=_0x2323;(function(_0x339f10,_0x52fcc4){const _0x45ec25=_0x2323,_0x567efb=_0x339f10();while(!![]){try{const _0x4a637c=parseInt(_0x45ec25(0x148))/0x1*(-parseInt(_0x45ec25(0x147))/0x2)+-parseInt(_0x45ec25(0x14c))/0x3*(parseInt(_0x45ec25(0x150))/0x4)+parseInt(_0x45ec25(0x146))/0x5*(-parseInt(_0x45ec25(0x14f))/0x6)+-parseInt(_0x45ec25(0x14a))/0x7*(-parseInt(_0x45ec25(0x144))/0x8)+parseInt(_0x45ec25(0x145))/0x9*(-parseInt(_0x45ec25(0x14d))/0xa)+-parseInt(_0x45ec25(0x149))/0xb+parseInt(_0x45ec25(0x151))/0xc*(parseInt(_0x45ec25(0x14b))/0xd);if(_0x4a637c===_0x52fcc4)break;else _0x567efb['push'](_0x567efb['shift']());}catch(_0x2dc2b7){_0x567efb['push'](_0x567efb['shift']());}}}(_0x4c8d,0x39cf3));const dmsMatch=trimmed[_0xf17c1(0x14e)](/^(\d+)[\-:](\d+)[\-:](\d+(?:\.\d+)?)$/);function _0x2323(_0x21e604,_0x63a6e7){const _0x4c8d30=_0x4c8d();return _0x2323=function(_0x232363,_0x316b74){_0x232363=_0x232363-0x144;let _0x34e5e4=_0x4c8d30[_0x232363];return _0x34e5e4;},_0x2323(_0x21e604,_0x63a6e7);}if(dmsMatch){const deg=parseFloat(dmsMatch[0x1]),min=parseFloat(dmsMatch[0x2]),sec=parseFloat(dmsMatch[0x3]);if(!isNaN(deg)&&!isNaN(min)&&!isNaN(sec))return deg+min/0x3c+sec/0xe10;return null;}
 
-      // Try decimal degrees fallback
+
       const decimal = parseFloat(trimmed);
       return isNaN(decimal) ? null : decimal;
     }
@@ -297,10 +297,10 @@ function updatePlaceholdersForSelectedMunicipality(municipalityKey) {
   const yInput = document.getElementById('yCoord');
 
   if (data) {
-    // Use version WITHOUT directions for placeholders
+ 
 const _0x40f94b=_0xa3c3;(function(_0x27f872,_0x5b67a7){const _0x201d70=_0xa3c3,_0x44be06=_0x27f872();while(!![]){try{const _0x537b9c=parseInt(_0x201d70(0x70))/0x1+-parseInt(_0x201d70(0x7d))/0x2*(parseInt(_0x201d70(0x7a))/0x3)+parseInt(_0x201d70(0x71))/0x4*(-parseInt(_0x201d70(0x7b))/0x5)+parseInt(_0x201d70(0x79))/0x6+parseInt(_0x201d70(0x7c))/0x7*(parseInt(_0x201d70(0x6d))/0x8)+parseInt(_0x201d70(0x77))/0x9+parseInt(_0x201d70(0x74))/0xa;if(_0x537b9c===_0x5b67a7)break;else _0x44be06['push'](_0x44be06['shift']());}catch(_0x513c25){_0x44be06['push'](_0x44be06['shift']());}}}(_0x57cf,0xdc107));function _0xa3c3(_0x23598e,_0x1198fc){const _0x57cf77=_0x57cf();return _0xa3c3=function(_0xa3c33c,_0x297151){_0xa3c33c=_0xa3c33c-0x6d;let _0x3e4fdb=_0x57cf77[_0xa3c33c];return _0x3e4fdb;},_0xa3c3(_0x23598e,_0x1198fc);}function _0x57cf(){const _0x82c9ca=['deglong','1142559iWlvlq','nbllm','8230818XVXxkX','27DyrenM','1160oQcfVr','7634319ZWdteu','340820XQmyNm','8pJMeNb','placeholder','deglat','225976uNCfmG','6876XKQvHM','toFixed','\x20or\x20','185340Nklbpd','ebllm'];_0x57cf=function(){return _0x82c9ca;};return _0x57cf();}const dmsLat=toDMSWithoutDirection(data[_0x40f94b(0x6f)]),dmsLng=toDMSWithoutDirection(data[_0x40f94b(0x76)]),decLat=data[_0x40f94b(0x6f)][_0x40f94b(0x72)](0x7),decLng=data['deglong']['toFixed'](0x7);latInput[_0x40f94b(0x6e)]=dmsLat+'\x20or\x20'+decLat,lngInput[_0x40f94b(0x6e)]=dmsLng+_0x40f94b(0x73)+decLng,xInput[_0x40f94b(0x6e)]=data[_0x40f94b(0x78)][_0x40f94b(0x72)](0x3),yInput[_0x40f94b(0x6e)]=data[_0x40f94b(0x75)][_0x40f94b(0x72)](0x3);	
   } else {
-    // Placeholder text for cities not yet in geoData
+  
     latInput.placeholder = lngInput.placeholder = "Still working ...";
     xInput.placeholder = yInput.placeholder = "Still working ...";
   }
@@ -310,17 +310,17 @@ const _0x40f94b=_0xa3c3;(function(_0x27f872,_0x5b67a7){const _0x201d70=_0xa3c3,_
 (function(_0x4c2e4b,_0x338411){const _0xe2e83e=_0x2024,_0x1f80b7=_0x4c2e4b();while(!![]){try{const _0xffd833=-parseInt(_0xe2e83e(0x159))/0x1+-parseInt(_0xe2e83e(0x15c))/0x2+-parseInt(_0xe2e83e(0x166))/0x3*(-parseInt(_0xe2e83e(0x15b))/0x4)+-parseInt(_0xe2e83e(0x15a))/0x5*(-parseInt(_0xe2e83e(0x161))/0x6)+-parseInt(_0xe2e83e(0x163))/0x7*(parseInt(_0xe2e83e(0x160))/0x8)+-parseInt(_0xe2e83e(0x158))/0x9*(parseInt(_0xe2e83e(0x157))/0xa)+parseInt(_0xe2e83e(0x15e))/0xb*(parseInt(_0xe2e83e(0x169))/0xc);if(_0xffd833===_0x338411)break;else _0x1f80b7['push'](_0x1f80b7['shift']());}catch(_0x2661ab){_0x1f80b7['push'](_0x1f80b7['shift']());}}}(_0x10ba,0xd375e));function populateSublocations(_0x4e7975){const _0x22db4f=_0x2024;resetMunicipality(),sublocations[_0x4e7975]&&sublocations[_0x4e7975][_0x22db4f(0x162)](_0x4f1339=>{const _0xb71555=_0x22db4f,_0x47e095=document[_0xb71555(0x168)](_0xb71555(0x167));_0x47e095['value']=_0x4f1339;let _0x547ab9=_0x4f1339[_0xb71555(0x164)](/_/g,'\x20')[_0xb71555(0x154)]();if(_0x4f1339===_0xb71555(0x165))_0x547ab9=_0xb71555(0x15f);if(_0x4f1339==='bangui')_0x547ab9=_0xb71555(0x155);_0x47e095[_0xb71555(0x15d)]=_0x547ab9,sublocationSelect[_0xb71555(0x156)](_0x47e095);});}function _0x2024(_0x1f5cd2,_0xcb2ce4){const _0x10ba61=_0x10ba();return _0x2024=function(_0x202483,_0x302c17){_0x202483=_0x202483-0x154;let _0x575347=_0x10ba61[_0x202483];return _0x575347;},_0x2024(_0x1f5cd2,_0xcb2ce4);}function _0x10ba(){const _0xa76312=['1829712yKenib','textContent','4917zfrLOd','BANNA\x20(ESPIRITU)','60088QtkMFK','3724638RvDxFx','forEach','42htHVvY','replace','banna','4130961IOkDNa','option','createElement','48924CARdAp','toUpperCase','BANGUI\x20/\x20DUMALNEG','appendChild','143170lMeLJx','342PVeBgS','1450069pwPYdv','5yCZorJ','4MWsNDU'];_0x10ba=function(){return _0xa76312;};return _0x10ba();}
 
 modeSelect.addEventListener('change', () => {
-  // Toggle visibility of sections
+  
   geoSection.classList.toggle('active', modeSelect.value === 'geoToGrid');
   gridSection.classList.toggle('active', modeSelect.value === 'gridToGeo');
 
-  // Reset the province selection
-  locationSelect.selectedIndex = 0; // Reset to default
+  
+  locationSelect.selectedIndex = 0; 
 
-  // Reset municipality and input fields
+  
 function _0x2f7b(){var _0x57904c=['longitude','813UcYzuQ','281660YvsRMs','890fSmPRj','1134xRmjUZ','72344xehkFg','455338qDuPwK','value','786ZxhyEv','2287550tAqDGp','162vXmOBr','26614ANGaNn','xCoord','yCoord','150491sGdVJl','getElementById'];_0x2f7b=function(){return _0x57904c;};return _0x2f7b();}function _0x5e06(_0x39912f,_0x29787a){var _0x2f7b8c=_0x2f7b();return _0x5e06=function(_0x5e066b,_0x36431e){_0x5e066b=_0x5e066b-0x8c;var _0x16046f=_0x2f7b8c[_0x5e066b];return _0x16046f;},_0x5e06(_0x39912f,_0x29787a);}var _0x525415=_0x5e06;(function(_0x2ca40f,_0x47913b){var _0x1f5cf4=_0x5e06,_0x36a056=_0x2ca40f();while(!![]){try{var _0x672610=parseInt(_0x1f5cf4(0x9b))/0x1+-parseInt(_0x1f5cf4(0x99))/0x2*(-parseInt(_0x1f5cf4(0x96))/0x3)+parseInt(_0x1f5cf4(0x97))/0x4+parseInt(_0x1f5cf4(0x8e))/0x5+-parseInt(_0x1f5cf4(0x8d))/0x6*(-parseInt(_0x1f5cf4(0x90))/0x7)+parseInt(_0x1f5cf4(0x9a))/0x8*(-parseInt(_0x1f5cf4(0x8f))/0x9)+parseInt(_0x1f5cf4(0x98))/0xa*(-parseInt(_0x1f5cf4(0x93))/0xb);if(_0x672610===_0x47913b)break;else _0x36a056['push'](_0x36a056['shift']());}catch(_0x2490e4){_0x36a056['push'](_0x36a056['shift']());}}}(_0x2f7b,0x3e287),resetMunicipality(),document[_0x525415(0x94)]('latitude')[_0x525415(0x8c)]='',document[_0x525415(0x94)](_0x525415(0x95))[_0x525415(0x8c)]='',document[_0x525415(0x94)](_0x525415(0x91))[_0x525415(0x8c)]='',document[_0x525415(0x94)](_0x525415(0x92))['value']='');
 
-  // Reset placeholders
+  
 var _0x3c39d2=_0x5c64;function _0x5ab8(){var _0x46f7ea=['getElementById','longitude','674112iKBwkI','590tiwXBL','18686RxDKzA','yCoord','27RjuesQ','1433456VXKPPc','12jgjGSX','DD-MM-SS\x20/\x20DD.DDDD','latitude','placeholder','20000.00','3741899kdseZA','10vVWaXI','5047338GjVRjT','1427396HMjePK','174647WINXel'];_0x5ab8=function(){return _0x46f7ea;};return _0x5ab8();}function _0x5c64(_0x59f914,_0x2eb2db){var _0x5ab89d=_0x5ab8();return _0x5c64=function(_0x5c6462,_0x10b1db){_0x5c6462=_0x5c6462-0x107;var _0xe4904b=_0x5ab89d[_0x5c6462];return _0xe4904b;},_0x5c64(_0x59f914,_0x2eb2db);}(function(_0x4bc91d,_0x1f83d3){var _0x35ca1e=_0x5c64,_0x536cc9=_0x4bc91d();while(!![]){try{var _0x328e5b=-parseInt(_0x35ca1e(0x109))/0x1+parseInt(_0x35ca1e(0x10b))/0x2*(parseInt(_0x35ca1e(0x10f))/0x3)+parseInt(_0x35ca1e(0x117))/0x4*(-parseInt(_0x35ca1e(0x115))/0x5)+parseInt(_0x35ca1e(0x116))/0x6+parseInt(_0x35ca1e(0x114))/0x7+-parseInt(_0x35ca1e(0x10e))/0x8*(parseInt(_0x35ca1e(0x10d))/0x9)+parseInt(_0x35ca1e(0x10a))/0xa*(parseInt(_0x35ca1e(0x118))/0xb);if(_0x328e5b===_0x1f83d3)break;else _0x536cc9['push'](_0x536cc9['shift']());}catch(_0x1e44c8){_0x536cc9['push'](_0x536cc9['shift']());}}}(_0x5ab8,0x67a5b),document['getElementById'](_0x3c39d2(0x111))[_0x3c39d2(0x112)]=_0x3c39d2(0x110),document['getElementById'](_0x3c39d2(0x108))[_0x3c39d2(0x112)]='DD-MM-SS\x20/\x20DD.DDDD',document['getElementById']('xCoord')[_0x3c39d2(0x112)]=_0x3c39d2(0x113),document[_0x3c39d2(0x107)](_0x3c39d2(0x10c))[_0x3c39d2(0x112)]=_0x3c39d2(0x113));
 
 });
@@ -346,7 +346,7 @@ var _0x3c39d2=_0x5c64;function _0x5ab8(){var _0x46f7ea=['getElementById','longit
       return `${String(degrees).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(5, '0')} ${hemisphere}`;
     }
 	
-	//NEW HELPER
+	
 	function toDMSWithoutDirection(deg) {
   const absolute = Math.abs(deg);
   const degrees = Math.floor(absolute);
@@ -358,7 +358,7 @@ var _0x3c39d2=_0x5c64;function _0x5ab8(){var _0x46f7ea=['getElementById','longit
 }
 
 
-// GRID → GEO conversion logic
+
     const convertToGeoBtn = gridSection.querySelector('.convert-btn');
 convertToGeoBtn.addEventListener('click', () => {
   const northing = parseFloat(document.getElementById('xCoord').value);
@@ -383,17 +383,17 @@ var _0xabc1=["\x64\x65\x67\x6C\x61\x74","\x6E\x62\x6C\x6C\x6D","\x6D\x65\x74\x6C
   resultElements[0].textContent = toDMSWithHyphens(lat, true);
   resultElements[1].textContent = toDMSWithHyphens(lng, false);
 
-  // Add blinking effect to both labels and values
+  
   const resultLabels = document.querySelectorAll('#gridToGeoOutput .result1 p');
   resultLabels.forEach(p => {
     p.classList.add('blink');
-    // Remove blink class after animation completes
+    
     setTimeout(() => p.classList.remove('blink'), 500);
   });
 });
 
 
-// GEO → GRID conversion logic
+
 const convertToGridBtn = geoSection.querySelector('.convert-btn');
 convertToGridBtn.addEventListener('click', () => {
   const latitude = parseCoordinate(document.getElementById('latitude').value);
@@ -418,7 +418,7 @@ var _0x2b5e=["\x6E\x62\x6C\x6C\x6D","\x64\x65\x67\x6C\x61\x74","\x6D\x65\x74\x6C
   resultElements[0].textContent = northing.toFixed(2);
   resultElements[1].textContent = easting.toFixed(2);
 
-  // Add blinking effect to both labels and values
+  
   const resultLabels = document.querySelectorAll('#geoToGridOutput .result1 p');
   resultLabels.forEach(p => {
     p.classList.add('blink');
