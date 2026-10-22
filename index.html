@@ -337,13 +337,13 @@ var _0x3c39d2=_0x5c64;function _0x5ab8(){var _0x46f7ea=['getElementById','longit
       const degrees = Math.floor(absolute);
       const minutesNotTruncated = (absolute - degrees) * 60;
       const minutes = Math.floor(minutesNotTruncated);
-      const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(2);
+      const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(3);
 
       const hemisphere = isLat
         ? (deg >= 0 ? 'N' : 'S')
         : (deg >= 0 ? 'E' : 'W');
 
-      return `${String(degrees).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(5, '0')} ${hemisphere}`;
+      return `${String(degrees).padStart(2, '0')}°${String(minutes).padStart(2, '0')}'${String(seconds).padStart(6, '0')}"${hemisphere}`;
     }
 	
 	
@@ -433,4 +433,3 @@ var _0x2b5e=["\x6E\x62\x6C\x6C\x6D","\x64\x65\x67\x6C\x61\x74","\x6D\x65\x74\x6C
 </script>
 </body>
 </html>
-
